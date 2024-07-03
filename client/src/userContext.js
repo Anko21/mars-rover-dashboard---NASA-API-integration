@@ -10,7 +10,7 @@ const UserProvider = ({children})=>{
         name : '',
         email : '',
     }
-    const [user,setUser] = useState(() => JSON.parse(localStorage.getItem("User")))
+    const [user,setUser] = useState(() => JSON.parse(localStorage.getItem("User")) || "")
 
     const handleChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value})
@@ -18,7 +18,7 @@ const UserProvider = ({children})=>{
 
     useEffect(()=>{
         localStorage.setItem('User',JSON.stringify(user))
-      },[user])
+    },[user])
 
     return(
         <UserContext.Provider value={{user,handleChange}}>
